@@ -1,4 +1,6 @@
 {
     "text_appbar": "Lector de PDF",
-    "text_button": "Buscar archivo PDF"
+    "text_button": "Buscar archivo PDF",
+    "pdf_view": "Visor de PDF",
+    "error_selecting_file": "Error al seleccionar el archivo:"
 }

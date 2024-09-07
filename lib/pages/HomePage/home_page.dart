@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+import 'package:pdf_reader/pages/PDFViewer/pdf_viewer.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
         }
       }
     } catch (e) {
-      debugPrint('Erro ao selecionar o arquivo: $e');
+      debugPrint('${'error_selecting_file'.tr()}: $e');
     } finally {
       setState(() {
         _isPickingFile = false;
@@ -86,9 +86,7 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         children: [
           ElevatedButton(
-            onPressed: _isPickingFile
-                ? null
-                : _pickFile, // Desativa o botão enquanto está ativo
+            onPressed: _isPickingFile ? null : _pickFile,
             child: Text(
               'text_button'.tr(),
             ),
@@ -129,27 +127,6 @@ class _HomePageState extends State<HomePage> {
                   ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class PDFViewer extends StatelessWidget {
-  final String filePath;
-
-  const PDFViewer({required this.filePath, super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('PDF Viewer'),
-      ),
-      body: SfPdfViewer.file(
-        File(filePath),
-        canShowScrollHead: true,
-        canShowScrollStatus: true,
-        enableTextSelection: true,
       ),
     );
   }
