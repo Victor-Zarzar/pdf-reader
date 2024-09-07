@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_pdfview/flutter_pdfview.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -14,6 +14,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   String? downloadPath;
+  bool _isPickingFile = false;
 
   @override
   void initState() {
@@ -41,21 +42,35 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> _pickFile() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: ['pdf'],
-    );
+    if (_isPickingFile) return;
 
-    if (result != null) {
-      String filePath = result.files.single.path!;
-      if (mounted) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => PDFView(filePath: filePath),
-          ),
-        );
+    setState(() {
+      _isPickingFile = true;
+    });
+
+    try {
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: ['pdf'],
+      );
+
+      if (result != null) {
+        String filePath = result.files.single.path!;
+        if (mounted) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PDFViewer(filePath: filePath),
+            ),
+          );
+        }
       }
+    } catch (e) {
+      debugPrint('Erro ao selecionar o arquivo: $e');
+    } finally {
+      setState(() {
+        _isPickingFile = false;
+      });
     }
   }
 
@@ -71,8 +86,12 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         children: [
           ElevatedButton(
-            onPressed: _pickFile,
-            child: const Text('Procurar Arquivo PDF'),
+            onPressed: _isPickingFile
+                ? null
+                : _pickFile, // Desativa o botão enquanto está ativo
+            child: Text(
+              'text_button'.tr(),
+            ),
           ),
           Expanded(
             child: downloadPath == null
@@ -97,7 +116,7 @@ class _HomePageState extends State<HomePage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => PDFView(
+                                  builder: (context) => PDFViewer(
                                     filePath: files[index].path,
                                   ),
                                 ),
@@ -110,6 +129,27 @@ class _HomePageState extends State<HomePage> {
                   ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class PDFViewer extends StatelessWidget {
+  final String filePath;
+
+  const PDFViewer({required this.filePath, super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('PDF Viewer'),
+      ),
+      body: SfPdfViewer.file(
+        File(filePath),
+        canShowScrollHead: true,
+        canShowScrollStatus: true,
+        enableTextSelection: true,
       ),
     );
   }

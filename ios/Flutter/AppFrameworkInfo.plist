@@ -22,11 +22,5 @@
     <string>1.0</string>
     <key>MinimumOSVersion</key>
     <string>12.0</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>Este aplicativo precisa acessar a biblioteca de fotos para ler arquivos PDF.</string>
-    <key>NSPhotoLibraryAddUsageDescription</key>
-    <string>Este aplicativo precisa acessar a biblioteca de fotos para salvar arquivos PDF.</string>
-    <key>NSDocumentsFolderUsageDescription</key>
-    <string>Este aplicativo precisa acessar documentos locais.</string>
   </dict>
 </plist>
