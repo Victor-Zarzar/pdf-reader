@@ -1,6 +1,8 @@
 {
     "text_appbar": "Leitor de PDF",
+    "about_home": "Nenhum PDF foi adicionado, tente adicionar alguns PDFs pressionando o botão adicionar.",
     "text_button": "Procurar Arquivo PDF",
     "pdf_view": "Visualizador de PDF",
-    "error_selecting_file": "Erro ao selecionar arquivo:"
+    "error_selecting_file": "Erro ao selecionar arquivo:",
+    "about_page": "Sobre"
 }

@@ -1,6 +1,8 @@
 {
     "text_appbar": "PDF reader",
+    "about_home": "No PDFs are add, try adding some pdfs by pressing that add button.",
     "text_button": "Browse PDF File",
     "pdf_view": "PDF Viewer",
-    "error_selecting_file": "Error selecting file:"
+    "error_selecting_file": "Error selecting file:",
+    "about_page": "About"
 }
