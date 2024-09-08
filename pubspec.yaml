@@ -41,6 +41,7 @@ dependencies:
   easy_localization: ^3.0.7
   google_fonts: ^6.2.1
   syncfusion_flutter_pdfviewer: ^26.2.13
+  url_launcher: ^6.3.0
 
 dev_dependencies:
   flutter_test:

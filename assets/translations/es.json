@@ -4,5 +4,7 @@
     "text_button": "Buscar archivo PDF",
     "pdf_view": "Visor de PDF",
     "error_selecting_file": "Error al seleccionar el archivo:",
-    "about_page": "Acerca de"
+    "about_page": "Acerca de",
+    "about_text": "Esta aplicación fue desarrollada para hacer que la lectura de sus documentos PDF sea rápida y fácil. Simple, intuitiva y de fácil acceso.",
+    "developed": "Desarrollado por: www.victorzarzar.com.br"
 }

@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pdf_reader/pages/AboutPage/about_page.dart';
 import 'package:pdf_reader/pages/PDFViewer/pdf_viewer.dart';
 import 'package:file_picker/file_picker.dart';
@@ -83,7 +84,13 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         title: Text(
           'text_appbar'.tr(),
-          style: const TextStyle(color: Colors.white),
+          style: GoogleFonts.jetBrainsMono(
+            textStyle: const TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -95,6 +102,7 @@ class _HomePageState extends State<HomePage> {
           Icons.add,
           size: 28,
           color: Colors.white,
+          semanticLabel: '',
         ),
       ),
       bottomNavigationBar: BottomAppBar(
@@ -108,6 +116,7 @@ class _HomePageState extends State<HomePage> {
               icon: const Icon(
                 Icons.home,
                 color: Colors.white,
+                semanticLabel: '',
               ),
             ),
             IconButton(
@@ -122,6 +131,7 @@ class _HomePageState extends State<HomePage> {
               icon: const Icon(
                 Icons.info,
                 color: Colors.white,
+                semanticLabel: '',
               ),
             ),
           ],
@@ -139,12 +149,18 @@ class _HomePageState extends State<HomePage> {
                         Image.asset(
                           'assets/imgs/nodata.png',
                           height: 100,
+                          semanticLabel: '',
                         ),
                         const SizedBox(height: 20),
                         Center(
                           child: Text(
                             'about_home'.tr(),
-                            style: const TextStyle(fontSize: 16),
+                            style: GoogleFonts.jetBrainsMono(
+                              textStyle: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                             textAlign: TextAlign.center,
                           ),
                         ),
