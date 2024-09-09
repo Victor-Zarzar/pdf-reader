@@ -96,13 +96,13 @@ class _HomePageState extends State<HomePage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.red.shade700,
-        tooltip: 'Open PDF',
+        tooltip: 'open_pdf'.tr(),
         onPressed: _isPickingFile ? null : _pickFile,
-        child: const Icon(
+        child: Icon(
           Icons.add,
           size: 28,
           color: Colors.white,
-          semanticLabel: '',
+          semanticLabel: 'icon_add'.tr(),
         ),
       ),
       bottomNavigationBar: BottomAppBar(

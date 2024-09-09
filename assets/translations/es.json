@@ -1,5 +1,7 @@
 {
     "text_appbar": "Lector de PDF",
+    "open_pdf": "Abrir PDF",
+    "icon_add": "Agregar icono de PDF",
     "image_home": "Imagen de una carpeta sin archivos abiertos.",
     "about_home": "No se agregan archivos PDF, intente agregar algunos archivos PDF presionando el botón Agregar.",
     "info_home": "Icono de inicio",

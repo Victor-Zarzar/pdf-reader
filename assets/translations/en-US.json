@@ -1,5 +1,7 @@
 {
     "text_appbar": "PDF reader",
+    "open_pdf": "Open PDF",
+    "icon_add": "Add PDF icon",
     "image_home": "Image of a folder with no files open.",
     "about_home": "No PDFs are add, try adding some pdfs by pressing that add button.",
     "info_home": "Home icon",
