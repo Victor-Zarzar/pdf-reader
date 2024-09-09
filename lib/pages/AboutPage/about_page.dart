@@ -26,6 +26,16 @@ class _AboutPageState extends State<AboutPage> {
     double myWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            semanticLabel: 'button_return'.tr(),
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          tooltip: 'return'.tr(),
+        ),
         title: Text(
           "about_page".tr(),
           style: GoogleFonts.jetBrainsMono(
@@ -46,16 +56,16 @@ class _AboutPageState extends State<AboutPage> {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Center(
                 child: Text(
                   'about_text'.tr(),
+                  textAlign: TextAlign.center,
                   style: GoogleFonts.jetBrainsMono(
                     textStyle: const TextStyle(
                       color: Colors.black,
-                      fontSize: 16,
+                      fontSize: 14,
                     ),
                   ),
                 ),
@@ -65,13 +75,16 @@ class _AboutPageState extends State<AboutPage> {
                 onTap: () {
                   _launchURL('https://www.victorzarzar.com.br');
                 },
-                child: Text(
-                  'developed'.tr(),
-                  style: GoogleFonts.jetBrainsMono(
-                    textStyle: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 14,
-                      decoration: TextDecoration.underline,
+                child: Center(
+                  child: Text(
+                    'developed'.tr(),
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.jetBrainsMono(
+                      textStyle: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 12,
+                        decoration: TextDecoration.underline,
+                      ),
                     ),
                   ),
                 ),

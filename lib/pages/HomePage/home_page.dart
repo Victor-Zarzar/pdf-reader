@@ -113,10 +113,10 @@ class _HomePageState extends State<HomePage> {
           children: [
             IconButton(
               onPressed: () {},
-              icon: const Icon(
+              icon: Icon(
                 Icons.home,
                 color: Colors.white,
-                semanticLabel: '',
+                semanticLabel: 'info_home'.tr(),
               ),
             ),
             IconButton(
@@ -128,10 +128,10 @@ class _HomePageState extends State<HomePage> {
                   ),
                 );
               },
-              icon: const Icon(
+              icon: Icon(
                 Icons.info,
                 color: Colors.white,
-                semanticLabel: '',
+                semanticLabel: 'info_icon'.tr(),
               ),
             ),
           ],
@@ -149,7 +149,7 @@ class _HomePageState extends State<HomePage> {
                         Image.asset(
                           'assets/imgs/nodata.png',
                           height: 100,
-                          semanticLabel: '',
+                          semanticLabel: 'image_home'.tr(),
                         ),
                         const SizedBox(height: 20),
                         Center(
@@ -157,7 +157,7 @@ class _HomePageState extends State<HomePage> {
                             'about_home'.tr(),
                             style: GoogleFonts.jetBrainsMono(
                               textStyle: const TextStyle(
-                                fontSize: 16,
+                                fontSize: 14,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),

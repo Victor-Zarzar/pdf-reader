@@ -1,10 +1,15 @@
 {
     "text_appbar": "PDF reader",
+    "image_home": "Image of a folder with no files open.",
     "about_home": "No PDFs are add, try adding some pdfs by pressing that add button.",
+    "info_home": "Home icon",
+    "info_icon": "Info icon",
     "text_button": "Browse PDF File",
     "pdf_view": "PDF Viewer",
     "error_selecting_file": "Error selecting file:",
     "about_page": "About",
+    "button_return": "Button back page",
+    "return": "Back button",
     "about_text": "This app was developed to make reading your PDF documents quick and easy. Simple and intuitive, easy to access.",
     "developed": "Developed by: www.victorzarzar.com.br"
 }

@@ -1,10 +1,15 @@
 {
     "text_appbar": "Lector de PDF",
+    "image_home": "Imagen de una carpeta sin archivos abiertos.",
     "about_home": "No se agregan archivos PDF, intente agregar algunos archivos PDF presionando el botón Agregar.",
+    "info_home": "Icono de inicio",
+    "info_icon": "Ícono de información",
     "text_button": "Buscar archivo PDF",
     "pdf_view": "Visor de PDF",
     "error_selecting_file": "Error al seleccionar el archivo:",
     "about_page": "Acerca de",
+    "button_return": "Página anterior del botón",
+    "return": "Botón Atrás",
     "about_text": "Esta aplicación fue desarrollada para hacer que la lectura de sus documentos PDF sea rápida y fácil. Simple, intuitiva y de fácil acceso.",
     "developed": "Desarrollado por: www.victorzarzar.com.br"
 }
