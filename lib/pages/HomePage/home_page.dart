@@ -14,14 +14,32 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
   String? downloadPath;
   bool _isPickingFile = false;
+  late AnimationController _controller;
+  late Animation<Offset> _animation;
 
   @override
   void initState() {
     super.initState();
     _loadDownloadPath();
+
+    // Inicializando o AnimationController
+    _controller = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    )..repeat(reverse: true);
+
+    // Definindo a animação de mover a seta de cima para baixo
+    _animation = Tween<Offset>(
+      begin: const Offset(0, -0.5),
+      end: const Offset(0, 0.1),
+    ).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeInOut,
+    ));
   }
 
   Future<void> _loadDownloadPath() async {
@@ -74,6 +92,12 @@ class _HomePageState extends State<HomePage> {
         _isPickingFile = false;
       });
     }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -138,7 +162,43 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: downloadPath == null
-          ? const Center(child: CircularProgressIndicator())
+          ? Column(
+              children: [
+                Expanded(
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        // Animação da seta
+                        AnimatedBuilder(
+                          animation: _animation,
+                          builder: (context, child) {
+                            return SlideTransition(
+                              position: _animation,
+                              child: Icon(
+                                Icons.arrow_downward,
+                                size: 50,
+                                color: Colors.red.shade700,
+                              ),
+                            );
+                          },
+                        ),
+                        const SizedBox(height: 20),
+                        Text(
+                          'Selecione um arquivo PDF abaixo',
+                          style: GoogleFonts.jetBrainsMono(
+                            textStyle: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            )
           : Column(
               children: [
                 Expanded(
@@ -173,7 +233,35 @@ class _HomePageState extends State<HomePage> {
                     future: Directory(downloadPath!).list().toList(),
                     builder: (context, snapshot) {
                       if (!snapshot.hasData) {
-                        return const Center(child: CircularProgressIndicator());
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            // Animação da seta para o estado carregando
+                            AnimatedBuilder(
+                              animation: _animation,
+                              builder: (context, child) {
+                                return SlideTransition(
+                                  position: _animation,
+                                  child: Icon(
+                                    Icons.arrow_downward,
+                                    size: 50,
+                                    color: Colors.red.shade700,
+                                  ),
+                                );
+                              },
+                            ),
+                            const SizedBox(height: 20),
+                            Text(
+                              'Carregando arquivos...',
+                              style: GoogleFonts.jetBrainsMono(
+                                textStyle: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
+                        );
                       }
 
                       var files = snapshot.data!
