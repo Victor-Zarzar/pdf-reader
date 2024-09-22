@@ -26,13 +26,11 @@ class _HomePageState extends State<HomePage>
     super.initState();
     _loadDownloadPath();
 
-    // Inicializando o AnimationController
     _controller = AnimationController(
       duration: const Duration(seconds: 2),
       vsync: this,
     )..repeat(reverse: true);
 
-    // Definindo a animação de mover a seta de cima para baixo
     _animation = Tween<Offset>(
       begin: const Offset(0, -0.5),
       end: const Offset(0, 0.1),
@@ -161,136 +159,116 @@ class _HomePageState extends State<HomePage>
           ],
         ),
       ),
-      body: downloadPath == null
-          ? Column(
-              children: [
-                Expanded(
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        // Animação da seta
-                        AnimatedBuilder(
-                          animation: _animation,
-                          builder: (context, child) {
-                            return SlideTransition(
-                              position: _animation,
-                              child: Icon(
-                                Icons.arrow_downward,
-                                size: 50,
-                                color: Colors.red.shade700,
-                              ),
-                            );
-                          },
-                        ),
-                        const SizedBox(height: 20),
-                        Text(
-                          'Selecione um arquivo PDF abaixo',
-                          style: GoogleFonts.jetBrainsMono(
-                            textStyle: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(30.0),
+          child: Column(
+            children: [
+              Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      'assets/imgs/nodata.png',
+                      height: 100,
+                      semanticLabel: 'image_home'.tr(),
                     ),
+                    const SizedBox(height: 100),
+                    Text(
+                      'about_home'.tr(),
+                      style: GoogleFonts.jetBrainsMono(
+                        textStyle: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 20),
+              Text(
+                'about_home_two'.tr(),
+                style: GoogleFonts.jetBrainsMono(
+                  textStyle: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-              ],
-            )
-          : Column(
-              children: [
-                Expanded(
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/imgs/nodata.png',
-                          height: 100,
-                          semanticLabel: 'image_home'.tr(),
-                        ),
-                        const SizedBox(height: 20),
-                        Center(
-                          child: Text(
-                            'about_home'.tr(),
-                            style: GoogleFonts.jetBrainsMono(
-                              textStyle: const TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+              ),
+              const SizedBox(height: 100),
+              Padding(
+                padding: const EdgeInsets.all(40.0),
+                child: AnimatedBuilder(
+                  animation: _animation,
+                  builder: (context, child) {
+                    return SlideTransition(
+                      position: _animation,
+                      child: Icon(
+                        Icons.arrow_downward,
+                        semanticLabel: 'arrow_icon'.tr(),
+                        size: 50,
+                        color: Colors.red.shade700,
+                      ),
+                    );
+                  },
                 ),
-                Expanded(
-                  child: FutureBuilder<List<FileSystemEntity>>(
-                    future: Directory(downloadPath!).list().toList(),
-                    builder: (context, snapshot) {
-                      if (!snapshot.hasData) {
-                        return Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            // Animação da seta para o estado carregando
-                            AnimatedBuilder(
-                              animation: _animation,
-                              builder: (context, child) {
-                                return SlideTransition(
-                                  position: _animation,
-                                  child: Icon(
-                                    Icons.arrow_downward,
-                                    size: 50,
-                                    color: Colors.red.shade700,
+              ),
+              downloadPath == null
+                  ? Center(
+                      child: CircularProgressIndicator(
+                        color: Colors.red.shade700,
+                      ),
+                    )
+                  : FutureBuilder<List<FileSystemEntity>>(
+                      future: Directory(downloadPath!).list().toList(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Center(
+                            child: CircularProgressIndicator(
+                              color: Colors.red.shade700,
+                            ),
+                          );
+                        }
+
+                        if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                          return const SizedBox();
+                        }
+
+                        var files = snapshot.data!
+                            .where((file) => file.path.endsWith('.pdf'))
+                            .toList();
+
+                        return ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: files.length,
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                              title: Text(
+                                files[index].path.split('/').last,
+                              ),
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => PDFViewer(
+                                      filePath: files[index].path,
+                                    ),
                                   ),
                                 );
                               },
-                            ),
-                            const SizedBox(height: 20),
-                            Text(
-                              'Carregando arquivos...',
-                              style: GoogleFonts.jetBrainsMono(
-                                textStyle: const TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ],
+                            );
+                          },
                         );
-                      }
-
-                      var files = snapshot.data!
-                          .where((file) => file.path.endsWith('.pdf'))
-                          .toList();
-
-                      return ListView.builder(
-                        itemCount: files.length,
-                        itemBuilder: (context, index) {
-                          return ListTile(
-                            title: Text(files[index].path.split('/').last),
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => PDFViewer(
-                                    filePath: files[index].path,
-                                  ),
-                                ),
-                              );
-                            },
-                          );
-                        },
-                      );
-                    },
-                  ),
-                ),
-              ],
-            ),
+                      },
+                    ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

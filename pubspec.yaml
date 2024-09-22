@@ -35,7 +35,8 @@ dependency_overrides:
   leak_tracker_flutter_testing: ^3.0.8
   test_api: ^0.7.3
   win32_registry: ^1.1.5
-  meta: ^1.16.0    
+  meta: ^1.16.0
+  permission_handler_platform_interface: ^4.2.3     
 
 flutter:
 
