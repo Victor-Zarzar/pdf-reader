@@ -1,16 +1,45 @@
-# pdf_reader
+<h1 align="center" id="header">
+ PDF Reader App Flutter
+</h1>
 
-A new Flutter project.
+🤖 Stack:
 
-## Getting Started
+- Dart
+- Flutter
+- Get Widget UI
+- Google Fonts
+- Url Launcher
+- Locale Language EN / PT-BR / ES
+- syncfusion_flutter_pdfviewer
 
-This project is a starting point for a Flutter application.
+<br />
 
-A few resources to get you started if this is your first Flutter project:
+⚙️ How to install:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Project Clone
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+     git clone https://github.com/Victor-Zarzar/pdf-reader
+
+Enter in directory:
+
+     cd age-pet
+
+Open in your favorite editor(e.g. VSCode):
+
+    code .
+
+For install dependencies:
+
+    flutter pub get
+
+Run the app:
+
+    flutter run
+
+### Version iOS:
+
+<img src="assets/imgs/homepageios.png" alt="home page ios" width="250"> &nbsp; &nbsp; &nbsp; <img src="assets/imgs/aboutpageios.png" alt="about page ios" width="250"> &nbsp; &nbsp; &nbsp; <img src="assets/imgs/viewpdfios.png" alt="view pdf ios" width="250">
+
+### Version Android:
+
+<img src="assets/imgs/homepageandroid.png" alt="home page android" width="250"> &nbsp; &nbsp; &nbsp; <img src="assets/imgs/aboutandroid.png" alt="about page android" width="250"> &nbsp; &nbsp; &nbsp; <img src="assets/imgs/viewpdfandroid.png" alt="view pdf android" width="250">
