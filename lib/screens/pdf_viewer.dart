@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pdf_reader/features/app_theme.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class PDFViewer extends StatelessWidget {
@@ -13,8 +14,8 @@ class PDFViewer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.red.shade700,
-        iconTheme: const IconThemeData(color: Colors.white),
+        backgroundColor: AppBarColor.primaryColor,
+        iconTheme: IconThemeData(color: IconColor.secondaryColor),
         centerTitle: true,
         leading: IconButton(
           icon: Icon(
@@ -29,8 +30,8 @@ class PDFViewer extends StatelessWidget {
         title: Text(
           'pdf_view'.tr(),
           style: GoogleFonts.jetBrainsMono(
-            textStyle: const TextStyle(
-              color: Colors.white,
+            textStyle: TextStyle(
+              color: FontTextColor.secondaryColor,
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),

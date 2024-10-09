@@ -2,8 +2,10 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pdf_reader/pages/AboutPage/about_page.dart';
-import 'package:pdf_reader/pages/PDFViewer/pdf_viewer.dart';
+import 'package:pdf_reader/controller/notification_controller.dart';
+import 'package:pdf_reader/features/app_theme.dart';
+import 'package:pdf_reader/screens/about_page.dart';
+import 'package:pdf_reader/screens/pdf_viewer.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -25,6 +27,12 @@ class _HomePageState extends State<HomePage>
   void initState() {
     super.initState();
     _loadDownloadPath();
+
+    NotificationService.showWeeklyNotification(
+      title: 'title_notification'.tr(),
+      body: 'body_notification'.tr(),
+      payload: 'rate_app',
+    );
 
     _controller = AnimationController(
       duration: const Duration(seconds: 2),
@@ -102,13 +110,13 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.red.shade700,
+        backgroundColor: AppBarColor.primaryColor,
         centerTitle: true,
         title: Text(
           'text_appbar'.tr(),
           style: GoogleFonts.jetBrainsMono(
-            textStyle: const TextStyle(
-              color: Colors.white,
+            textStyle: TextStyle(
+              color: FontTextColor.secondaryColor,
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
@@ -117,46 +125,79 @@ class _HomePageState extends State<HomePage>
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.red.shade700,
+        backgroundColor: BottomColor.primaryColor,
         tooltip: 'open_pdf'.tr(),
         onPressed: _isPickingFile ? null : _pickFile,
         child: Icon(
           Icons.add,
           size: 28,
-          color: Colors.white,
+          color: IconColor.secondaryColor,
           semanticLabel: 'icon_add'.tr(),
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        color: Colors.red.shade700,
+        height: 100,
+        color: BottomColor.primaryColor,
         shape: const CircularNotchedRectangle(),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.home,
-                color: Colors.white,
-                semanticLabel: 'info_home'.tr(),
-              ),
-            ),
-            IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const AboutPage(),
+        child: SingleChildScrollView(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.home,
+                      color: IconColor.secondaryColor,
+                      semanticLabel: 'info_home'.tr(),
+                    ),
                   ),
-                );
-              },
-              icon: Icon(
-                Icons.info,
-                color: Colors.white,
-                semanticLabel: 'info_icon'.tr(),
+                  Text(
+                    'Home',
+                    style: GoogleFonts.jetBrainsMono(
+                      color: FontTextColor.secondaryColor,
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  ),
+                ],
               ),
-            ),
-          ],
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const AboutPage(),
+                        ),
+                      );
+                    },
+                    icon: Icon(
+                      Icons.info,
+                      color: IconColor.secondaryColor,
+                      semanticLabel: 'info_icon'.tr(),
+                    ),
+                  ),
+                  Text(
+                    'About',
+                    style: GoogleFonts.jetBrainsMono(
+                      color: FontTextColor.secondaryColor,
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
       body: SingleChildScrollView(
@@ -209,7 +250,7 @@ class _HomePageState extends State<HomePage>
                         Icons.arrow_downward,
                         semanticLabel: 'arrow_icon'.tr(),
                         size: 50,
-                        color: Colors.red.shade700,
+                        color: IconColor.primaryColor,
                       ),
                     );
                   },
@@ -218,7 +259,7 @@ class _HomePageState extends State<HomePage>
               downloadPath == null
                   ? Center(
                       child: CircularProgressIndicator(
-                        color: Colors.red.shade700,
+                        color: IconColor.primaryColor,
                       ),
                     )
                   : FutureBuilder<List<FileSystemEntity>>(
@@ -228,7 +269,7 @@ class _HomePageState extends State<HomePage>
                             ConnectionState.waiting) {
                           return Center(
                             child: CircularProgressIndicator(
-                              color: Colors.red.shade700,
+                              color: IconColor.primaryColor,
                             ),
                           );
                         }

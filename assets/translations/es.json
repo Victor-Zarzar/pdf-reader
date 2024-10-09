@@ -1,6 +1,8 @@
 {
     "text_appbar": "Lector de PDF",
     "open_pdf": "Abrir PDF",
+    "title_notification": "¿Te gusta nuestra aplicación?",
+    "body_notification": "¡Califícanos en la tienda!",
     "icon_add": "Agregar icono de PDF",
     "image_home": "Imagen de una carpeta sin archivos abiertos.",
     "about_home": "No se encontraron archivos PDF.",
@@ -14,6 +16,7 @@
     "about_page": "Acerca de",
     "button_return": "Página anterior del botón",
     "return": "Botón Atrás",
+    "launch_error": "No se pudo iniciar",
     "about_text": "Esta aplicación fue desarrollada para hacer que la lectura de sus documentos PDF sea rápida y fácil. Simple, intuitiva y de fácil acceso.",
     "developed": "Desarrollado por: www.victorzarzar.com.br"
 }

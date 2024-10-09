@@ -10,7 +10,9 @@
 - Google Fonts
 - Url Launcher
 - Locale Language EN / PT-BR / ES
-- syncfusion_flutter_pdfviewer
+- Flutter PDF Viewer
+- Flutter local notifications
+- Timezone
 
 <br />
 

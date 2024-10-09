@@ -1,6 +1,8 @@
 {
     "text_appbar": "PDF reader",
     "open_pdf": "Open PDF",
+    "title_notification": "Do you like our app?",
+    "body_notification": "Rate us in the store!",
     "icon_add": "Add PDF icon",
     "image_home": "Image of a folder with no files open.",
     "about_home": "No PDF files found.",
@@ -14,6 +16,7 @@
     "about_page": "About",
     "button_return": "Button back page",
     "return": "Back button",
+    "launch_error": "Could not launch",
     "about_text": "This app was developed to make reading your PDF documents quick and easy. Simple and intuitive, easy to access.",
     "developed": "Developed by: www.victorzarzar.com.br"
 }

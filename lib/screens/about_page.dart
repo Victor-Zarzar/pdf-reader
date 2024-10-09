@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pdf_reader/features/app_theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AboutPage extends StatefulWidget {
@@ -11,12 +12,10 @@ class AboutPage extends StatefulWidget {
 }
 
 class _AboutPageState extends State<AboutPage> {
-  Future<void> _launchURL(String url) async {
+  Future<void> _launchUrl(String url) async {
     final Uri uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
-    } else {
-      throw '${'launch_error'.tr()} $url';
+    if (!await launchUrl(uri)) {
+      throw Exception('${'launch_error'.tr()} $url');
     }
   }
 
@@ -39,16 +38,16 @@ class _AboutPageState extends State<AboutPage> {
         title: Text(
           "about_page".tr(),
           style: GoogleFonts.jetBrainsMono(
-            textStyle: const TextStyle(
-              color: Colors.white,
+            textStyle: TextStyle(
+              color: FontTextColor.secondaryColor,
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
           ),
         ),
         centerTitle: true,
-        backgroundColor: Colors.red.shade700,
-        iconTheme: const IconThemeData(color: Colors.white),
+        backgroundColor: AppBarColor.primaryColor,
+        iconTheme: IconThemeData(color: IconColor.secondaryColor),
       ),
       body: SizedBox(
         height: myHeight,
@@ -63,8 +62,8 @@ class _AboutPageState extends State<AboutPage> {
                   'about_text'.tr(),
                   textAlign: TextAlign.center,
                   style: GoogleFonts.jetBrainsMono(
-                    textStyle: const TextStyle(
-                      color: Colors.black,
+                    textStyle: TextStyle(
+                      color: FontTextColor.primaryColor,
                       fontSize: 14,
                     ),
                   ),
@@ -73,15 +72,15 @@ class _AboutPageState extends State<AboutPage> {
               const SizedBox(height: 20),
               GestureDetector(
                 onTap: () {
-                  _launchURL('https://www.victorzarzar.com.br');
+                  _launchUrl('https://www.victorzarzar.com.br');
                 },
                 child: Center(
                   child: Text(
                     'developed'.tr(),
                     textAlign: TextAlign.center,
                     style: GoogleFonts.jetBrainsMono(
-                      textStyle: const TextStyle(
-                        color: Colors.black,
+                      textStyle: TextStyle(
+                        color: FontTextColor.primaryColor,
                         fontSize: 12,
                         decoration: TextDecoration.underline,
                       ),
