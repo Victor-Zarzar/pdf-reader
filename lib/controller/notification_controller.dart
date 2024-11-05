@@ -85,16 +85,18 @@ class NotificationService {
       id,
       title,
       body,
-      tz.TZDateTime.from(scheduledTime, tz.local),
+      tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5)),
       const NotificationDetails(
         iOS: DarwinNotificationDetails(),
         android: AndroidNotificationDetails(
-          'reminder_channel',
-          'Reminder Channel',
+          'your channel id',
+          'your channel name',
+          channelDescription: 'your channel description',
           importance: Importance.high,
           priority: Priority.high,
         ),
       ),
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation.absoluteTime,
       matchDateTimeComponents: DateTimeComponents.dateAndTime,
