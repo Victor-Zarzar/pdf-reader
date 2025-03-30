@@ -18,5 +18,9 @@
     "return": "Botão voltar",
     "launch_error": "Não foi possível iniciar.",
     "about_text": "Este app foi desenvolvido para fazer leituras rápidas e fáceis de seus documentos em PDF. Simples e intuitivo de fácil acesso.",
-    "developed": "Desenvolvido por: www.victorzarzar.com.br"
+    "developed": "Desenvolvido por: www.victorzarzar.com.br",
+    "icon_settings": "Ícone de configurações",
+    "settings": "Configurações",
+    "notifications_icon": "Ícone de notificações",
+    "notifications": "Notificações"
 }

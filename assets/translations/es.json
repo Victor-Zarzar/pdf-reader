@@ -18,5 +18,9 @@
     "return": "Botón Atrás",
     "launch_error": "No se pudo iniciar",
     "about_text": "Esta aplicación fue desarrollada para hacer que la lectura de sus documentos PDF sea rápida y fácil. Simple, intuitiva y de fácil acceso.",
-    "developed": "Desarrollado por: www.victorzarzar.com.br"
+    "developed": "Desarrollado por: www.victorzarzar.com.br",
+    "icon_settings": "Icono de configuración",
+    "settings": "Ajustes",
+    "notifications_icon": "Icono de notificaciones",
+    "notifications": "Notificaciones"
 }

@@ -18,5 +18,9 @@
     "return": "Back button",
     "launch_error": "Could not launch",
     "about_text": "This app was developed to make reading your PDF documents quick and easy. Simple and intuitive, easy to access.",
-    "developed": "Developed by: www.victorzarzar.com.br"
+    "developed": "Developed by: www.victorzarzar.com.br",
+    "icon_settings": "Settings icon",
+    "settings": "Settings",
+    "notifications_icon": "Notifications icon",
+    "notifications": "Notifications"
 }

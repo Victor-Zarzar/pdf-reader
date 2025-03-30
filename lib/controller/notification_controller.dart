@@ -1,105 +1,43 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:timezone/timezone.dart' as tz;
+import 'package:pdf_reader/services/notification_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class NotificationService {
-  static final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
+class NotificationController extends ChangeNotifier {
+  bool _notificationsEnabled = true;
 
-  static Future<void> onDidReceiveNotification(
-      NotificationResponse notificationResponse) async {
-    debugPrint("Notification receive");
+  bool get notificationsEnabled => _notificationsEnabled;
+
+  NotificationController() {
+    _loadNotificationPreference();
   }
 
-  static Future<void> init() async {
-    const AndroidInitializationSettings androidInitializationSettings =
-        AndroidInitializationSettings("@mipmap/ic_launcher");
-    const DarwinInitializationSettings iOSInitializationSettings =
-        DarwinInitializationSettings();
-
-    const InitializationSettings initializationSettings =
-        InitializationSettings(
-      android: androidInitializationSettings,
-      iOS: iOSInitializationSettings,
-    );
-    await flutterLocalNotificationsPlugin.initialize(
-      initializationSettings,
-      onDidReceiveNotificationResponse: onDidReceiveNotification,
-      onDidReceiveBackgroundNotificationResponse: onDidReceiveNotification,
-    );
-
-    await flutterLocalNotificationsPlugin
-        .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>()
-        ?.requestNotificationsPermission();
+  Future<void> _loadNotificationPreference() async {
+    final prefs = await SharedPreferences.getInstance();
+    _notificationsEnabled = prefs.getBool('notifications_enabled') ?? true;
+    if (_notificationsEnabled) {
+      NotificationService.showWeeklyNotification(
+        title: 'title_notification'.tr(),
+        body: 'body_notification'.tr(),
+        payload: 'rate_app',
+      );
+    }
+    notifyListeners();
   }
 
-  static Future<void> showInstantNotification(String title, String body) async {
-    const NotificationDetails platformChannelSpecifics = NotificationDetails(
-        android: AndroidNotificationDetails(
-          'instant_notification_channel_id',
-          'Instant Notifications',
-          importance: Importance.max,
-          priority: Priority.high,
-        ),
-        iOS: DarwinNotificationDetails());
-
-    await flutterLocalNotificationsPlugin.show(
-      0,
-      title,
-      body,
-      platformChannelSpecifics,
-      payload: 'instant_notification',
-    );
-  }
-
-  static Future<void> showWeeklyNotification({
-    required String title,
-    required String body,
-    required String payload,
-  }) async {
-    const AndroidNotificationDetails androidNotificationDetails =
-        AndroidNotificationDetails('weekly_channel_id', 'Weekly Notifications',
-            channelDescription: 'Weekly Notification Channel',
-            importance: Importance.max,
-            priority: Priority.high,
-            ticker: 'ticker');
-
-    const NotificationDetails notificationDetails =
-        NotificationDetails(android: androidNotificationDetails);
-
-    await flutterLocalNotificationsPlugin.periodicallyShow(
-      2,
-      title,
-      body,
-      RepeatInterval.weekly,
-      notificationDetails,
-      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-      payload: payload,
-    );
-  }
-
-  static Future<void> scheduleNotification(
-      int id, String title, String body, DateTime scheduledTime) async {
-    await flutterLocalNotificationsPlugin.zonedSchedule(
-      id,
-      title,
-      body,
-      tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5)),
-      const NotificationDetails(
-        iOS: DarwinNotificationDetails(),
-        android: AndroidNotificationDetails(
-          'your channel id',
-          'your channel name',
-          channelDescription: 'your channel description',
-          importance: Importance.high,
-          priority: Priority.high,
-        ),
-      ),
-      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-      uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime,
-      matchDateTimeComponents: DateTimeComponents.dateAndTime,
-    );
+  Future<void> toggleNotifications(bool value) async {
+    _notificationsEnabled = value;
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('notifications_enabled', value);
+    if (value) {
+      NotificationService.showWeeklyNotification(
+        title: 'title_notification'.tr(),
+        body: 'body_notification'.tr(),
+        payload: 'rate_app',
+      );
+    } else {
+      NotificationService.cancelWeeklyNotification();
+    }
+    notifyListeners();
   }
 }

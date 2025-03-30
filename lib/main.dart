@@ -2,6 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pdf_reader/controller/notification_controller.dart';
 import 'package:pdf_reader/screens/home_page.dart';
+import 'package:pdf_reader/services/notification_service.dart';
+import 'package:pdf_reader/services/secure_service.dart';
+import 'package:provider/provider.dart';
 import 'package:timezone/data/latest.dart' as tz;
 
 void main() async {
@@ -9,6 +12,7 @@ void main() async {
   await EasyLocalization.ensureInitialized();
   await NotificationService.init();
   tz.initializeTimeZones();
+  SecureStorageService.init();
 
   runApp(
     EasyLocalization(
@@ -18,10 +22,13 @@ void main() async {
         Locale('es'),
       ],
       path: 'assets/translations',
-      fallbackLocale: const Locale(
-        'en-US',
+      fallbackLocale: const Locale('en', 'US'),
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => NotificationController()),
+        ],
+        child: const MyApp(),
       ),
-      child: const MyApp(),
     ),
   );
 }

@@ -2,12 +2,13 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pdf_reader/controller/notification_controller.dart';
+import 'package:pdf_reader/features/app_assets.dart';
 import 'package:pdf_reader/features/app_theme.dart';
 import 'package:pdf_reader/screens/about_page.dart';
 import 'package:pdf_reader/screens/pdf_viewer.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:pdf_reader/screens/settings_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -27,12 +28,6 @@ class _HomePageState extends State<HomePage>
   void initState() {
     super.initState();
     _loadDownloadPath();
-
-    NotificationService.showWeeklyNotification(
-      title: 'title_notification'.tr(),
-      body: 'body_notification'.tr(),
-      payload: 'rate_app',
-    );
 
     _controller = AnimationController(
       duration: const Duration(seconds: 2),
@@ -122,6 +117,23 @@ class _HomePageState extends State<HomePage>
             ),
           ),
         ),
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.settings,
+              color: IconColor.secondaryColor,
+              semanticLabel: 'icon_settings'.tr(),
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SettingsPage(),
+                ),
+              );
+            },
+          ),
+        ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
@@ -209,11 +221,7 @@ class _HomePageState extends State<HomePage>
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      'assets/imgs/nodata.png',
-                      height: 100,
-                      semanticLabel: 'image_home'.tr(),
-                    ),
+                    ImageOne.asset(),
                     const SizedBox(height: 100),
                     Text(
                       'about_home'.tr(),
