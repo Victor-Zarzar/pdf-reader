@@ -36,4 +36,23 @@ class IconColor {
   static Color get primaryColor => const Color(0xFFD32F2F);
 
   static Color get secondaryColor => const Color(0xFFFFFFFF);
+
+  static Color get thirdColor => const Color(0xFF000000);
+}
+
+class TextColor {
+  TextColor._();
+  static Color get primaryColor => const Color(0xFFF1F8E9);
+  static Color get secondaryColor => const Color(0xFF000000);
+}
+
+class SwitchColor {
+  SwitchColor._();
+  static Color get primaryColor => const Color(0xFFD32F2F);
+  static Color get secondaryColor => const Color(0xFFFFFFFF);
+}
+
+class PopupMenuColor {
+  PopupMenuColor._();
+  static Color get primaryColor => const Color(0xFFD32F2F);
 }

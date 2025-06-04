@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pdf_reader/controller/locale_controller.dart';
 import 'package:pdf_reader/features/app_assets.dart';
 import 'package:pdf_reader/features/app_theme.dart';
 import 'package:pdf_reader/screens/about_page.dart';
@@ -9,6 +10,7 @@ import 'package:pdf_reader/screens/pdf_viewer.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf_reader/screens/settings_page.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -103,221 +105,228 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppBarColor.primaryColor,
-        centerTitle: true,
-        title: Text(
-          'text_appbar'.tr(),
-          style: GoogleFonts.jetBrainsMono(
-            textStyle: TextStyle(
-              color: FontTextColor.secondaryColor,
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.settings,
-              color: IconColor.secondaryColor,
-              semanticLabel: 'icon_settings'.tr(),
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const SettingsPage(),
+    final currentLocale = context.locale;
+    return Consumer<LocaleController>(
+      builder: (context, languageProvider, child) {
+        return Scaffold(
+          key: ValueKey(currentLocale),
+          appBar: AppBar(
+            backgroundColor: AppBarColor.primaryColor,
+            centerTitle: true,
+            title: Text(
+              'text_appbar'.tr(),
+              style: GoogleFonts.jetBrainsMono(
+                textStyle: TextStyle(
+                  color: FontTextColor.secondaryColor,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
                 ),
-              );
-            },
-          ),
-        ],
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: BottomColor.primaryColor,
-        tooltip: 'open_pdf'.tr(),
-        onPressed: _isPickingFile ? null : _pickFile,
-        child: Icon(
-          Icons.add,
-          size: 28,
-          color: IconColor.secondaryColor,
-          semanticLabel: 'icon_add'.tr(),
-        ),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        height: 100,
-        color: BottomColor.primaryColor,
-        shape: const CircularNotchedRectangle(),
-        child: SingleChildScrollView(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.home,
-                      color: IconColor.secondaryColor,
-                      semanticLabel: 'info_home'.tr(),
-                    ),
-                  ),
-                  Text(
-                    'Home',
-                    style: GoogleFonts.jetBrainsMono(
-                      color: FontTextColor.secondaryColor,
-                      fontSize: 13,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                  ),
-                ],
               ),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const AboutPage(),
-                        ),
-                      );
-                    },
-                    icon: Icon(
-                      Icons.info,
-                      color: IconColor.secondaryColor,
-                      semanticLabel: 'info_icon'.tr(),
+            ),
+            actions: [
+              IconButton(
+                icon: Icon(
+                  Icons.settings,
+                  color: IconColor.secondaryColor,
+                  semanticLabel: 'icon_settings'.tr(),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SettingsPage(),
                     ),
-                  ),
-                  Text(
-                    'About',
-                    style: GoogleFonts.jetBrainsMono(
-                      color: FontTextColor.secondaryColor,
-                      fontSize: 13,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                  ),
-                ],
+                  );
+                },
               ),
             ],
           ),
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(30.0),
-          child: Column(
-            children: [
-              Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ImageOne.asset(),
-                    const SizedBox(height: 100),
-                    Text(
-                      'about_home'.tr(),
-                      style: GoogleFonts.jetBrainsMono(
-                        textStyle: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: BottomColor.primaryColor,
+            tooltip: 'open_pdf'.tr(),
+            onPressed: _isPickingFile ? null : _pickFile,
+            child: Icon(
+              Icons.add,
+              size: 28,
+              color: IconColor.secondaryColor,
+              semanticLabel: 'icon_add'.tr(),
+            ),
+          ),
+          bottomNavigationBar: BottomAppBar(
+            height: 100,
+            color: BottomColor.primaryColor,
+            shape: const CircularNotchedRectangle(),
+            child: SingleChildScrollView(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.home,
+                          color: IconColor.secondaryColor,
+                          semanticLabel: 'info_home'.tr(),
                         ),
                       ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 20),
-              Text(
-                'about_home_two'.tr(),
-                style: GoogleFonts.jetBrainsMono(
-                  textStyle: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
+                      Text(
+                        'home'.tr(),
+                        style: GoogleFonts.jetBrainsMono(
+                          color: FontTextColor.secondaryColor,
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
+                    ],
                   ),
-                ),
-              ),
-              const SizedBox(height: 100),
-              Padding(
-                padding: const EdgeInsets.all(40.0),
-                child: AnimatedBuilder(
-                  animation: _animation,
-                  builder: (context, child) {
-                    return SlideTransition(
-                      position: _animation,
-                      child: Icon(
-                        Icons.arrow_downward,
-                        semanticLabel: 'arrow_icon'.tr(),
-                        size: 50,
-                        color: IconColor.primaryColor,
-                      ),
-                    );
-                  },
-                ),
-              ),
-              downloadPath == null
-                  ? Center(
-                      child: CircularProgressIndicator(
-                        color: IconColor.primaryColor,
-                      ),
-                    )
-                  : FutureBuilder<List<FileSystemEntity>>(
-                      future: Directory(downloadPath!).list().toList(),
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return Center(
-                            child: CircularProgressIndicator(
-                              color: IconColor.primaryColor,
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const AboutPage(),
                             ),
                           );
-                        }
+                        },
+                        icon: Icon(
+                          Icons.info,
+                          color: IconColor.secondaryColor,
+                          semanticLabel: 'info_icon'.tr(),
+                        ),
+                      ),
+                      Text(
+                        'about_page'.tr(),
+                        style: GoogleFonts.jetBrainsMono(
+                          color: FontTextColor.secondaryColor,
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+          body: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: Column(
+                children: [
+                  Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ImageOne.asset(),
+                        const SizedBox(height: 100),
+                        Text(
+                          'about_home'.tr(),
+                          style: GoogleFonts.jetBrainsMono(
+                            textStyle: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    'about_home_two'.tr(),
+                    style: GoogleFonts.jetBrainsMono(
+                      textStyle: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 100),
+                  Padding(
+                    padding: const EdgeInsets.all(40.0),
+                    child: AnimatedBuilder(
+                      animation: _animation,
+                      builder: (context, child) {
+                        return SlideTransition(
+                          position: _animation,
+                          child: Icon(
+                            Icons.arrow_downward,
+                            semanticLabel: 'arrow_icon'.tr(),
+                            size: 50,
+                            color: IconColor.primaryColor,
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  downloadPath == null
+                      ? Center(
+                          child: CircularProgressIndicator(
+                            color: IconColor.primaryColor,
+                          ),
+                        )
+                      : FutureBuilder<List<FileSystemEntity>>(
+                          future: Directory(downloadPath!).list().toList(),
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return Center(
+                                child: CircularProgressIndicator(
+                                  color: IconColor.primaryColor,
+                                ),
+                              );
+                            }
 
-                        if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                          return const SizedBox();
-                        }
+                            if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                              return const SizedBox();
+                            }
 
-                        var files = snapshot.data!
-                            .where((file) => file.path.endsWith('.pdf'))
-                            .toList();
+                            var files = snapshot.data!
+                                .where((file) => file.path.endsWith('.pdf'))
+                                .toList();
 
-                        return ListView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: files.length,
-                          itemBuilder: (context, index) {
-                            return ListTile(
-                              title: Text(
-                                files[index].path.split('/').last,
-                              ),
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => PDFViewer(
-                                      filePath: files[index].path,
-                                    ),
+                            return ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: files.length,
+                              itemBuilder: (context, index) {
+                                return ListTile(
+                                  title: Text(
+                                    files[index].path.split('/').last,
                                   ),
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => PDFViewer(
+                                          filePath: files[index].path,
+                                        ),
+                                      ),
+                                    );
+                                  },
                                 );
                               },
                             );
                           },
-                        );
-                      },
-                    ),
-            ],
+                        ),
+                ],
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

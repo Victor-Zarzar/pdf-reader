@@ -13,6 +13,7 @@
     "text_button": "Browse PDF File",
     "pdf_view": "PDF Viewer",
     "error_selecting_file": "Error selecting file:",
+    "home": "Home",
     "about_page": "About",
     "button_return": "Button back page",
     "return": "Back button",
@@ -22,5 +23,9 @@
     "icon_settings": "Settings icon",
     "settings": "Settings",
     "notifications_icon": "Notifications icon",
-    "notifications": "Notifications"
+    "notifications": "Notifications",
+    "language": "Language",
+    "english": "English",
+    "portuguese": "Portuguese",
+    "spanish": "Spanish"
 }

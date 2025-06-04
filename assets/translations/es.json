@@ -13,6 +13,7 @@
     "text_button": "Buscar archivo PDF",
     "pdf_view": "Visor de PDF",
     "error_selecting_file": "Error al seleccionar el archivo:",
+    "home": "Inicio",
     "about_page": "Acerca de",
     "button_return": "Página anterior del botón",
     "return": "Botón Atrás",
@@ -22,5 +23,9 @@
     "icon_settings": "Icono de configuración",
     "settings": "Ajustes",
     "notifications_icon": "Icono de notificaciones",
-    "notifications": "Notificaciones"
+    "notifications": "Notificaciones",
+    "language": "Idioma",
+    "english": "Inglés",
+    "portuguese": "Portugués",
+    "spanish": "Español"
 }

@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:pdf_reader/controller/locale_controller.dart';
 import 'package:pdf_reader/controller/notification_controller.dart';
 import 'package:pdf_reader/screens/home_page.dart';
 import 'package:pdf_reader/services/notification_service.dart';
@@ -26,6 +27,7 @@ void main() async {
       child: MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (_) => NotificationController()),
+          ChangeNotifierProvider(create: (_) => LocaleController()),
         ],
         child: const MyApp(),
       ),
