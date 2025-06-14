@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pdf_reader/controller/locale_controller.dart';
 import 'package:pdf_reader/controller/notification_controller.dart';
-import 'package:pdf_reader/screens/home_page.dart';
+import 'package:pdf_reader/view/home_page.dart';
 import 'package:pdf_reader/services/notification_service.dart';
 import 'package:pdf_reader/services/secure_service.dart';
 import 'package:provider/provider.dart';
@@ -46,9 +46,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        useMaterial3: true,
-      ),
+      theme: ThemeData(useMaterial3: true),
       debugShowCheckedModeBanner: false,
       title: "PDF Reader",
       localizationsDelegates: context.localizationDelegates,

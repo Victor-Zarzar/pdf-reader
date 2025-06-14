@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:pdf_reader/features/app_theme.dart';
+import 'package:pdf_reader/view/widget/responsive_extension.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AboutPage extends StatefulWidget {
@@ -26,25 +26,13 @@ class _AboutPageState extends State<AboutPage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            semanticLabel: 'button_return'.tr(),
-          ),
+          icon: Icon(Icons.arrow_back, semanticLabel: 'button_return'.tr()),
           onPressed: () {
             Navigator.pop(context);
           },
           tooltip: 'return'.tr(),
         ),
-        title: Text(
-          "about_page".tr(),
-          style: GoogleFonts.jetBrainsMono(
-            textStyle: TextStyle(
-              color: FontTextColor.secondaryColor,
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
+        title: Text("about_page".tr(), style: context.h1),
         centerTitle: true,
         backgroundColor: AppBarColor.primaryColor,
         iconTheme: IconThemeData(color: IconColor.secondaryColor),
@@ -61,12 +49,7 @@ class _AboutPageState extends State<AboutPage> {
                 child: Text(
                   'about_text'.tr(),
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.jetBrainsMono(
-                    textStyle: TextStyle(
-                      color: FontTextColor.primaryColor,
-                      fontSize: 14,
-                    ),
-                  ),
+                  style: context.bodySmallDark,
                 ),
               ),
               const SizedBox(height: 20),
@@ -78,13 +61,7 @@ class _AboutPageState extends State<AboutPage> {
                   child: Text(
                     'developed'.tr(),
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.jetBrainsMono(
-                      textStyle: TextStyle(
-                        color: FontTextColor.primaryColor,
-                        fontSize: 12,
-                        decoration: TextDecoration.underline,
-                      ),
-                    ),
+                    style: context.footerMediumFontSemiBold,
                   ),
                 ),
               ),

@@ -23,6 +23,7 @@ dependencies:
   shared_preferences: ^2.5.3
   provider: ^6.1.4
   flutter_secure_storage: ^9.2.4
+  flutter_svg: ^2.1.0     
 
 dev_dependencies:
   flutter_test:
@@ -41,7 +42,6 @@ dependency_overrides:
   win32_registry: ^2.1.0
   meta: ^1.16.0
   permission_handler_platform_interface: ^4.2.3
-  flutter_svg: ^2.1.0     
 
 flutter:
 

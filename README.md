@@ -13,6 +13,7 @@
 - Flutter PDF Viewer
 - Flutter local notifications
 - Timezone
+- Provider (State Managment)
 
 <br />
 
