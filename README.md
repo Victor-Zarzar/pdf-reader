@@ -38,12 +38,12 @@ For install dependencies:
 Run the app:
 
     flutter run
-    
+
 
 ### Version iOS:
 
 <div style="display: flex; justify-content: start; align-items: center;">
-  <img src="assets/imgs/ios.png" alt="iOS" width="750" heigth="600"/>
+  <img src="assets/imgs/ios.png" alt="iOS" width="750" heigth="500"/>
 </div>
 
 <br> <br>
@@ -51,5 +51,5 @@ Run the app:
 ### Version Android:
 
 <div style="display: flex; justify-content: start; align-items: center;">
-  <img src="assets/imgs/android.png" alt="Android" width="750" heigth="600"/>
+  <img src="assets/imgs/android.png" alt="Android" width="750" heigth="500"/>
 </div>
