@@ -6,7 +6,7 @@
 
 - Dart
 - Flutter
-- Get Widget UI
+- Material 3 (UI)
 - Google Fonts
 - Url Launcher
 - Locale Language EN / PT-BR / ES
@@ -38,11 +38,18 @@ For install dependencies:
 Run the app:
 
     flutter run
+    
 
 ### Version iOS:
 
-<img src="assets/imgs/homepageios.png" alt="home page ios" width="250"> &nbsp; &nbsp; &nbsp; <img src="assets/imgs/aboutpageios.png" alt="about page ios" width="250"> &nbsp; &nbsp; &nbsp; <img src="assets/imgs/viewpdfios.png" alt="view pdf ios" width="250">
+<div style="display: flex; justify-content: start; align-items: center;">
+  <img src="assets/imgs/ios.png" alt="iOS" width="750" heigth="600"/>
+</div>
+
+<br> <br>
 
 ### Version Android:
 
-<img src="assets/imgs/homepageandroid.png" alt="home page android" width="250"> &nbsp; &nbsp; &nbsp; <img src="assets/imgs/aboutandroid.png" alt="about page android" width="250"> &nbsp; &nbsp; &nbsp; <img src="assets/imgs/viewpdfandroid.png" alt="view pdf android" width="250">
+<div style="display: flex; justify-content: start; align-items: center;">
+  <img src="assets/imgs/android.png" alt="Android" width="750" heigth="600"/>
+</div>

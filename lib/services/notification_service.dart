@@ -20,9 +20,9 @@ class NotificationService {
 
     const InitializationSettings initializationSettings =
         InitializationSettings(
-      android: androidInitializationSettings,
-      iOS: iOSInitializationSettings,
-    );
+          android: androidInitializationSettings,
+          iOS: iOSInitializationSettings,
+        );
     await flutterLocalNotificationsPlugin.initialize(
       initializationSettings,
       onDidReceiveNotificationResponse: onDidReceiveNotification,
@@ -31,7 +31,8 @@ class NotificationService {
 
     await flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>()
+          AndroidFlutterLocalNotificationsPlugin
+        >()
         ?.requestNotificationsPermission();
   }
 
@@ -62,13 +63,13 @@ class NotificationService {
   }) async {
     const AndroidNotificationDetails androidNotificationDetails =
         AndroidNotificationDetails(
-      'weekly_channel_id',
-      'Weekly Notifications',
-      channelDescription: 'Weekly Notification Channel',
-      importance: Importance.max,
-      priority: Priority.high,
-      ticker: 'ticker',
-    );
+          'weekly_channel_id',
+          'Weekly Notifications',
+          channelDescription: 'Weekly Notification Channel',
+          importance: Importance.max,
+          priority: Priority.high,
+          ticker: 'ticker',
+        );
 
     const NotificationDetails notificationDetails = NotificationDetails(
       android: androidNotificationDetails,
@@ -109,8 +110,6 @@ class NotificationService {
         ),
       ),
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-      uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime,
       matchDateTimeComponents: DateTimeComponents.dateAndTime,
     );
   }
