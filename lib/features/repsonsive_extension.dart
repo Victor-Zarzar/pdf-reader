@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pdf_reader/features/app_theme.dart';
-import 'package:pdf_reader/view/widget/responsive_text.dart';
+import 'package:pdf_reader/features/responsive_text.dart';
 
 extension ResponsiveTextStyle on BuildContext {
   // Heading Styles

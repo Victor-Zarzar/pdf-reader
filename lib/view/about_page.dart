@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pdf_reader/features/app_theme.dart';
-import 'package:pdf_reader/view/widget/responsive_extension.dart';
+import 'package:pdf_reader/features/repsonsive_extension.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AboutPage extends StatefulWidget {
@@ -26,7 +26,10 @@ class _AboutPageState extends State<AboutPage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, semanticLabel: 'button_return'.tr()),
+          icon: Icon(
+            Icons.keyboard_arrow_left,
+            semanticLabel: 'button_return'.tr(),
+          ),
           onPressed: () {
             Navigator.pop(context);
           },

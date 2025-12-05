@@ -30,5 +30,7 @@
     "language": "Idioma",
     "english": "Inglés",
     "portuguese": "Portugués",
-    "spanish": "Español"
+    "spanish": "Español",
+    "information_icon": "Icono de información",
+    "enable_notifications": "Activar notificaciones"
 }

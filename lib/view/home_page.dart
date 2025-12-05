@@ -3,13 +3,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pdf_reader/controller/locale_controller.dart';
 import 'package:pdf_reader/features/app_theme.dart';
+import 'package:pdf_reader/features/repsonsive_extension.dart';
 import 'package:pdf_reader/view/pdf_viewer.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf_reader/view/settings_page.dart';
 import 'package:pdf_reader/view/widget/tab_bar.dart';
 import 'package:pdf_reader/view/widget/body_container.dart';
-import 'package:pdf_reader/view/widget/responsive_extension.dart';
+
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {

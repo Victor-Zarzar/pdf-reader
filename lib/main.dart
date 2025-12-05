@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pdf_reader/controller/locale_controller.dart';
 import 'package:pdf_reader/controller/notification_controller.dart';
+import 'package:pdf_reader/services/sentry_service.dart';
 import 'package:pdf_reader/view/home_page.dart';
 import 'package:pdf_reader/services/notification_service.dart';
 import 'package:pdf_reader/services/secure_service.dart';
@@ -14,6 +15,15 @@ void main() async {
   await NotificationService.init();
   tz.initializeTimeZones();
   SecureStorageService.init();
+  await SentryService.instance.init();
+
+  FlutterError.onError = (FlutterErrorDetails details) {
+    FlutterError.presentError(details);
+    SentryService.instance.captureException(
+      details.exception,
+      stackTrace: details.stack,
+    );
+  };
 
   runApp(
     EasyLocalization(

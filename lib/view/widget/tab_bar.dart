@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pdf_reader/features/app_theme.dart';
+import 'package:pdf_reader/features/repsonsive_extension.dart';
 import 'package:pdf_reader/view/about_page.dart';
-import 'package:pdf_reader/view/widget/responsive_extension.dart';
 
 class TabBarFooter extends StatelessWidget {
   const TabBarFooter({super.key});

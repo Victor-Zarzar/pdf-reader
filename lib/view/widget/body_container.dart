@@ -3,8 +3,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pdf_reader/features/app_assets.dart';
 import 'package:pdf_reader/features/app_theme.dart';
+import 'package:pdf_reader/features/repsonsive_extension.dart';
 import 'package:pdf_reader/view/pdf_viewer.dart';
-import 'package:pdf_reader/view/widget/responsive_extension.dart';
 
 class BodyContainer extends StatelessWidget {
   const BodyContainer({
@@ -59,52 +59,50 @@ class BodyContainer extends StatelessWidget {
             ),
             downloadPath == null
                 ? Center(
-                  child: CircularProgressIndicator(
-                    color: IconColor.primaryColor,
-                  ),
-                )
+                    child: CircularProgressIndicator(
+                      color: IconColor.primaryColor,
+                    ),
+                  )
                 : FutureBuilder<List<FileSystemEntity>>(
-                  future: Directory(downloadPath!).list().toList(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(
-                        child: CircularProgressIndicator(
-                          color: IconColor.primaryColor,
-                        ),
-                      );
-                    }
-
-                    if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                      return const SizedBox();
-                    }
-
-                    var files =
-                        snapshot.data!
-                            .where((file) => file.path.endsWith('.pdf'))
-                            .toList();
-
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: files.length,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          title: Text(files[index].path.split('/').last),
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder:
-                                    (context) =>
-                                        PDFViewer(filePath: files[index].path),
-                              ),
-                            );
-                          },
+                    future: Directory(downloadPath!).list().toList(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(
+                          child: CircularProgressIndicator(
+                            color: IconColor.primaryColor,
+                          ),
                         );
-                      },
-                    );
-                  },
-                ),
+                      }
+
+                      if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                        return const SizedBox();
+                      }
+
+                      var files = snapshot.data!
+                          .where((file) => file.path.endsWith('.pdf'))
+                          .toList();
+
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: files.length,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            title: Text(files[index].path.split('/').last),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      PDFViewer(filePath: files[index].path),
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      );
+                    },
+                  ),
           ],
         ),
       ),
