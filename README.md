@@ -40,16 +40,8 @@ Run the app:
     flutter run
 
 
-### Version iOS:
+### Mockup Images:
 
 <div style="display: flex; justify-content: start; align-items: center;">
-  <img src="assets/imgs/ios.png" alt="iOS" width="750" heigth="500"/>
-</div>
-
-<br> <br>
-
-### Version Android:
-
-<div style="display: flex; justify-content: start; align-items: center;">
-  <img src="assets/imgs/android.png" alt="Android" width="750" heigth="500"/>
+  <img src="assets/imgs/mockup.png" alt="iOS" width="750" heigth="500"/>
 </div>

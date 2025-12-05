@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.example.pdf_reader"
-    compileSdk = 35
+    compileSdk = 36
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -20,8 +20,8 @@ android {
 
     defaultConfig {
         applicationId = "com.example.pdf_reader"
-        minSdk = flutter.minSdkVersion
-        targetSdk = 35
+        minSdk = 24
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0.0"
     }
